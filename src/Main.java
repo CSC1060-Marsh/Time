@@ -2,37 +2,32 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the increment in seconds:");
-        int increment = sc.nextInt();
-    }
+        Time t1 = new Time();              // midnight
+        t1.print(true);
+        Time t2 = new Time(17, 30, 0);     // 5:30 PM
+        t2.print(false);
 
-    public static class Time {
-        Scanner sc = new Scanner(System.in);
-        private int hour;
-        private int minute;
-        private int second;
-        public Time() {
-            this.hour = 0;
-            this.minute = 0;
-            this.second = 0;
-        }
-        public Time(int hour, int minute, int second) {
-            System.out.println("Enter the hour:");
-            hour = sc.nextInt();
-            System.out.println("Enter the minute:");
-            minute = sc.nextInt();
-            System.out.println("Enter the second:");
-            second = sc.nextInt();
+        t2.increment(1800);
+        t2.print(false);
+        t1.print(false);
+        t2.print(true);
+       // Time t3 = Time.fromString("14:15:56");
 
-            this.hour = hour;
-            this.minute = minute;
-            this.second = second;
-        }
-    }
-    public static void print(boolean booleanInput) {
-        if (booleanInput == true) {
-            System.out.println("Make This Military Time");
-        }
+        // add an hour onto t1, then print it in both formats
+       // t1.increment(3600);
+      //  t1.print(true);
+       // t1.print(false);
+
+        // add an hour and a half, and 30 seconds onto t2
+        //t2.increment(5430);
+
+        // print t2 in both formats
+       // t2.print(true);
+       // t2.print(false);
+
+        // add 5 seconds to t3, then prints it in both formats
+       // t3.increment(5);
+       // t3.print(true);
+       // t3.print(false);
     }
 }
