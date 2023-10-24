@@ -36,39 +36,58 @@ public class Time {
             hour = hour + 1;
             minute = minute - 60;
         }
-        while (hour > 24) {
+        while (hour >= 24) {
             hour = hour - 24;
         }
 
     }
 
     public void print(boolean military) {
-        String printingString;
+        String morningOrNight;
         String newHour;
         String newMinute;
         String newSecond;
-        if (hour < 10) {
-            newHour = "0" + hour;
+        if (second < 10) {
+            newSecond = "0" + second;
         } else {
-            newHour = String.valueOf(hour);
+            newSecond = "" + second;
         }
-
-        if (military == true) {
-            printingString = hour + ":" + minute + ":" + second;
+        if (minute < 10) {
+            newMinute = "0" + minute;
         } else {
-            
-                }
+            newMinute = "" + minute;
+        }
+        if (!military) {
+            if (hour < 12) {
+                morningOrNight = " A.M.";
+            } else {
+                morningOrNight = " P.M.";
             }
+        } else {
+            morningOrNight = "";
         }
 
-        System.out.println(printingString);
+        if (!military) {
+            if (hour == 0) {
+                newHour = "12";
+            } else if (hour <= 12) {
+                newHour = "" + hour;
+            } else {
+                newHour = "" + (hour - 12);
+            }
+        } else {
+            newHour = "" + hour;
+        }
+        System.out.println(newHour + ":" + newMinute + ":" + newSecond + morningOrNight);
+    }
+
+    public static Time fromString(String time) {
+        String[] timeArray = time.split(":");
+        int hour = Integer.parseInt(timeArray[0]);
+        int minute = Integer.parseInt(timeArray[1]);
+        int second = Integer.parseInt(timeArray[2]);
+        return new Time(hour, minute, second);
     }
 }
-// public static Time fromString(String time) {
-//    int[] timeArray = new int[]{Integer.parseInt(Arrays.toString(time.split(":")))};
 
-//   int hour = timeArray[0];
-//  int minute = timeArray[1];
-//  int second = timeArray[2];
-//  }
 
